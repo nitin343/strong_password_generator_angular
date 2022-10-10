@@ -1,0 +1,40 @@
+
+<div class="main_container">
+
+<div class="password-generator-box">
+<h1>Password Genarator</h1>
+
+
+<div class="text-include-field">
+ <div class="length_field">
+  <mat-form-field class="width-input" appearance="outline">
+    <mat-label>Enter Length</mat-label>
+    <input matInput type="number" (input)="passLength($event)" placeholder="Enter Length">
+    <mat-hint>Enter only numbers</mat-hint>
+  </mat-form-field>
+ </div>
+
+
+
+
+  <section class="example-section">
+    <mat-checkbox  (change)="includeLetter()" class="example-margin" >Use Letter</mat-checkbox>
+    <mat-checkbox  (change)="includeNumber()" class="example-margin" >Use Number</mat-checkbox>
+    <mat-checkbox (change)="includeSymbol()" class="example-margin" >Use Symbol</mat-checkbox>
+ </section>
+
+  <button class="width-input" mat-raised-button color="primary"
+  [disabled]="!(length && (useLetter || useNumber || useSymbol))"
+  (click)="generatePassword()">Generate</button>
+</div>
+</div>
+
+ <div *ngIf="password">
+  <mat-form-field class="width-input" appearance="outline">
+    <input  matInput  [value]="password" placeholder="Your Password">
+    <mat-icon *ngIf="copy" (click)="copied()" matSuffix  [cdkCopyToClipboard]="password">content_copy</mat-icon>
+    <mat-icon *ngIf="!copy" matSuffix >done</mat-icon>
+  </mat-form-field>
+ </div>
+
+</div>
